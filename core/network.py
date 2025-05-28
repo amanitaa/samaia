@@ -1,3 +1,5 @@
+import socket
+from config import UDP_SERVER_HOST, UDP_SERVER_PORT
 import network
 import time
 from utils.logger import Logger
@@ -21,3 +23,10 @@ def connect_wifi(ssid, password, timeout=10):
 
     log.info(f"Connected! IP: {wlan.ifconfig()[0]}")
     return wlan.ifconfig()[0]
+
+
+def udp_server():
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.bind((UDP_SERVER_HOST, UDP_SERVER_PORT))
+    log.info(f"Listening on UDP port {UDP_SERVER_PORT}")
+    return sock
