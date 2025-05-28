@@ -1,5 +1,6 @@
 import time
 
+
 class Logger:
     LEVELS = ['DEBUG', 'INFO', 'WARNING', 'ERROR']
 

@@ -9,6 +9,7 @@ log = Logger("System", level="INFO")
 
 wdt = None
 
+
 def init_system():
     gc.collect()
     log.info("System initialized. Memory cleaned.")

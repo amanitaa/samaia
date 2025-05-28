@@ -6,6 +6,7 @@ from utils.logger import Logger
 
 log = Logger("WiFi", level="INFO")
 
+
 def connect_wifi(ssid, password, timeout=10):
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
