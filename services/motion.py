@@ -1,13 +1,15 @@
 from machine import Pin, PWM
+from config import *
 
 
-IN1 = Pin(12, Pin.OUT)
-IN2 = Pin(13, Pin.OUT)
-IN3 = Pin(14, Pin.OUT)
-IN4 = Pin(15, Pin.OUT)
+IN1 = Pin(DOC_IN1, Pin.OUT)
+IN2 = Pin(DOC_IN2, Pin.OUT)
+IN3 = Pin(DOC_IN3, Pin.OUT)
+IN4 = Pin(DOC_IN4, Pin.OUT)
 
-PWM_PIN = PWM(Pin(14), freq=1000)
-PWM_PIN.duty(512)  # 50% speed
+PWM_PIN = Pin(PWM_IN)
+pwm_pin = PWM(PWM_PIN, freq=1000)
+pwm_pin.duty(512)  # 50% speed
 
 
 def forward():

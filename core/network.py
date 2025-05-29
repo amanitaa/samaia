@@ -1,5 +1,5 @@
 import socket
-from config import UDP_SERVER_HOST, UDP_SERVER_PORT
+from config import UDP_SERVER_HOST, UDP_SERVER_PORT, SAMAIA_CONTROLLER_IP, SAMAIA_CONTROLLER_PORT
 import network
 import time
 from utils.logger import Logger
@@ -31,3 +31,17 @@ def udp_server():
     sock.bind((UDP_SERVER_HOST, UDP_SERVER_PORT))
     log.info(f"Listening on UDP port {UDP_SERVER_PORT}")
     return sock
+
+
+def receive_command(sock):
+    data, addr = sock.recvfrom(1024)
+    command = data.decode().strip().upper()
+    log.info(f"Received: {command}")
+    return command
+
+
+def send_event(sock, event):
+    try:
+        sock.sendto(event.encode(), (SAMAIA_CONTROLLER_IP, SAMAIA_CONTROLLER_PORT))
+    except Exception as e:
+        log.error(f"Failed to send event {e}")
