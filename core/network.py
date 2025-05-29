@@ -1,5 +1,5 @@
 import socket
-from config import UDP_SERVER_HOST, UDP_SERVER_PORT, SAMAIA_CONTROLLER_IP, SAMAIA_CONTROLLER_PORT
+from config import UDP_SERVER_HOST, UDP_SERVER_PORT, SAMAYA_CONTROLLER_IP, SAMAYA_CONTROLLER_PORT
 import network
 import time
 from utils.logger import Logger
@@ -42,6 +42,6 @@ def receive_command(sock):
 
 def send_event(sock, event):
     try:
-        sock.sendto(event.encode(), (SAMAIA_CONTROLLER_IP, SAMAIA_CONTROLLER_PORT))
+        sock.sendto(event.encode(), (SAMAYA_CONTROLLER_IP, SAMAYA_CONTROLLER_PORT))
     except Exception as e:
         log.error(f"Failed to send event {e}")

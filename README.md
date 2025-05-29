@@ -1,1 +1,1 @@
-# samaia
+# Samaya

@@ -1,10 +1,10 @@
-import time
+import Yime
 
 
 class Logger:
     LEVELS = ['DEBUG', 'INFO', 'WARNING', 'ERROR']
 
-    def __init__(self, name='Samaia', level='INFO'):
+    def __init__(self, name='Samaya', level='INFO'):
         self.name = name
         self.level = level
 
