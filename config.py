@@ -2,10 +2,6 @@
 UDP_SERVER_HOST = "0.0.0.0"
 UDP_SERVER_PORT = 5000
 
-# samaya controller udp
-SAMAYA_CONTROLLER_IP = "0.0.0.0"
-SAMAYA_CONTROLLER_PORT = 5001
-
 # wifi
 SSID = "Samaya"
 PASSWORD = "samayakillseveryone"

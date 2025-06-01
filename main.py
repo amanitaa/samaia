@@ -1,5 +1,5 @@
 from core import system
-from core.network import udp_server, receive_command, send_event
+from core.network import udp_server, receive_command, send_event, accept_connection
 from core.system import collect_telemetry
 from utils.logger import Logger
 from services.motion import command_mapper
@@ -15,9 +15,11 @@ while True:
     system.feed_watchdog()
     system.log_memory()
 
-    command = receive_command(sock)
+    client, addr = accept_connection(sock)
+
+    command = receive_command(client)
     command_mapper[command]()
 
     # maybe run monitoring in different thread?
     telemetry = collect_telemetry()
-    send_event(sock, telemetry)
+    send_event(client, telemetry)
