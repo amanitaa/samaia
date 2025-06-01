@@ -18,7 +18,9 @@ while True:
     client, addr = accept_connection(sock)
 
     command = receive_command(client)
-    command_mapper[command]()
+    action = command["action"]
+    intensity = command["intensity"]
+    command_mapper[action](intensity)
 
     # maybe run monitoring in different thread?
     telemetry = collect_telemetry()
