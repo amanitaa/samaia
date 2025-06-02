@@ -1,5 +1,7 @@
 import socket
 import network
+import ustruct
+import ujson
 
 from config import UDP_SERVER_HOST, UDP_SERVER_PORT
 from utils.logger import Logger
@@ -29,15 +31,18 @@ def accept_connection(sock):
 
 
 def receive_command(client):
-    data = client.recvfrom(1024)
+    raw_msg = client.recv(4)
+    msg_len = ustruct.unpack('>I', raw_msg)[0]
+    data = client.recv(msg_len)
     if data:
-        command = data.decode().strip().upper()
+        command = ujson.loads(data.decode('utf-8'))
         log.info(f"Received: {command}")
     return
 
 
 def send_event(client, event):
     try:
-        client.send(event.encode())
+        event_bytes = ujson.dumps(event).encode('utf-8')
+        client.send(ustruct.pack('>I', len(event_bytes)) + event_bytes)
     except Exception as e:
         log.error(f"Failed to send event {e}")
